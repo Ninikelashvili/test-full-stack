@@ -1,0 +1,15 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+
+@layer base{
+    body{
+        @apply font-roboto font-normal overflow-x-hidden bg-color-1
+    }
+}
+
+input,textarea{
+    font-size: 14px;
+    color: #6A6C8D;
+}
