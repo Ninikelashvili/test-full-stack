@@ -1,12 +1,17 @@
+import { useCallback } from "react";
+
 const Filters = ({ filters, setFilters, setCurrentPage }) => {
-  const handleFilterChange = (e) => {
-    const { name, value } = e.target;
-    setFilters((prevFilters) => ({
-      ...prevFilters,
-      [name]: value,
-    }));
-    setCurrentPage(1);
-  };
+  const handleFilterChange = useCallback(
+    (e) => {
+      const { name, value } = e.target;
+      setFilters((prevFilters) => ({
+        ...prevFilters,
+        [name]: value,
+      }));
+      setCurrentPage(1);
+    },
+    [setFilters, setCurrentPage]
+  );
 
   return (
     <div className="flex justify-start gap-4 flex-col items-start md:items-center md:flex-row">

@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect, useState, useMemo, useCallback } from "react";
 import { useSelector } from "react-redux";
 import { useParams } from "react-router-dom";
 import Pagination from "../components/Pagination";
@@ -26,37 +26,43 @@ const TablePage = () => {
     setCurrentPage(1);
   }, [id]);
 
-  const applyFilters = (columns) => {
-    return columns?.filter((column) => {
-      const matchesName = column.name
-        .toLowerCase()
-        .includes(filters.name.toLowerCase());
-      const matchesDataType = column.datatype
-        .toLowerCase()
-        .includes(filters.dataType.toLowerCase());
-      const matchesNullable =
-        filters.nullable === ""
-          ? true
-          : column.nullable === (filters.nullable === "true");
+  const applyFilters = useCallback(
+    (columns) => {
+      return columns?.filter((column) => {
+        const matchesName = column.name
+          .toLowerCase()
+          .includes(filters.name.toLowerCase());
+        const matchesDataType = column.datatype
+          .toLowerCase()
+          .includes(filters.dataType.toLowerCase());
+        const matchesNullable =
+          filters.nullable === ""
+            ? true
+            : column.nullable === (filters.nullable === "true");
 
-      return matchesName && matchesDataType && matchesNullable;
-    });
-  };
+        return matchesName && matchesDataType && matchesNullable;
+      });
+    },
+    [filters]
+  );
 
-  const filteredColumns = applyFilters(openedTable?.columns || []);
+  const filteredColumns = useMemo(
+    () => applyFilters(openedTable?.columns || []),
+    [applyFilters, openedTable?.columns]
+  );
 
   const indexOfLastItem = currentPage * itemsPerPage;
   const indexOfFirstItem = indexOfLastItem - itemsPerPage;
-  const currentColumns = filteredColumns.slice(
-    indexOfFirstItem,
-    indexOfLastItem
+  const currentColumns = useMemo(
+    () => filteredColumns.slice(indexOfFirstItem, indexOfLastItem),
+    [filteredColumns, indexOfFirstItem, indexOfLastItem]
   );
 
   const totalPages = Math.ceil(filteredColumns.length / itemsPerPage);
 
-  const handlePageChange = (page) => {
+  const handlePageChange = useCallback((page) => {
     setCurrentPage(page);
-  };
+  }, []);
 
   return (
     <div className="relative w-full py-6 px-5 md:py-10">

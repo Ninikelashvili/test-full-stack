@@ -45,7 +45,7 @@ const Sidebar = () => {
       >
         <div className="flex w-full px-5 pt-16 pb-5 md:pt-10">
           <Link
-            className="w-full py-3 px-6 bg-color-5 text-center text-color-4 text-base rounded-xl transition-all duration-300 hover:bg-color-6 hover:text-white"
+            className="w-full py-3 px-6 bg-color-6 text-center text-white text-base rounded-xl transition-all duration-300 hover:opacity-80"
             to="/"
             onClick={closeSidebar}
           >
