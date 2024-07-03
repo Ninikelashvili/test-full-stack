@@ -23,7 +23,7 @@ On the main root, run the command:
 npm install
 ```
 
-Than navigate to frontend:
+Than navigate to frontend and run the command:
 
 ```bash
 cd frontend
