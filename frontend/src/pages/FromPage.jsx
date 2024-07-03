@@ -6,6 +6,7 @@ import Checkbox from "../components/Checkbox";
 
 const FromPage = () => {
   const [tableName, setTableName] = useState("");
+  const [isError, setIsError] = useState(false);
   const [columns, setColumns] = useState([
     { name: "", datatype: "", nullable: false },
   ]);
@@ -24,6 +25,12 @@ const FromPage = () => {
       }
       return values;
     });
+    setMessage(false);
+  }, []);
+
+  const handleTableNameChange = useCallback((e) => {
+    setTableName(e.target.value);
+    setMessage("");
   }, []);
 
   const handleAddColumn = useCallback(() => {
@@ -37,6 +44,7 @@ const FromPage = () => {
     setColumns((prevColumns) => {
       if (prevColumns.length === 1) {
         setMessage("You cannot delete the last line.");
+        setIsError(true);
         return prevColumns;
       }
       const values = [...prevColumns];
@@ -59,11 +67,14 @@ const FromPage = () => {
           setColumns([{ name: "", datatype: "", nullable: false }]);
           setMessage(response.payload.message || "Table Created Successfully");
           dispatch(getTables());
+          setIsError(false);
         } else {
           setMessage(response.payload.message || "Error creating table.");
+          setIsError(true);
         }
       } catch (error) {
         console.error("Error creating table:", error);
+        setIsError(true);
       }
     },
     [tableName, columns, dispatch]
@@ -81,7 +92,7 @@ const FromPage = () => {
             type="text"
             placeholder="Table Name"
             value={tableName}
-            onChange={(e) => setTableName(e.target.value)}
+            onChange={handleTableNameChange}
             required
           />
         </label>
@@ -151,7 +162,13 @@ const FromPage = () => {
         >
           Create Table
         </button>
-        <p>{message}</p>
+        <p
+          className={`${
+            isError ? "text-red-600" : "text-green-600"
+          } text-sm font-montserrat font-semibold `}
+        >
+          {message}
+        </p>
       </>
     ),
     [
@@ -159,8 +176,10 @@ const FromPage = () => {
       columns,
       handleInputChange,
       handleRemoveColumn,
+      handleTableNameChange,
       handleAddColumn,
       message,
+      isError,
     ]
   );
 
