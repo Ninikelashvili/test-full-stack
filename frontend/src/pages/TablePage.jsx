@@ -71,7 +71,7 @@ const TablePage = () => {
       ) : (
         <div className="w-full h-full flex flex-col items-center justify-between">
           <div className="w-full">
-            <h1 className="text-2xl text-color-4 font-montserrat font-semibold mb-5">
+            <h1 className="text-2xl text-color-4 font-montserrat font-semibold mb-5 pr-8">
               {openedTable?.name}
             </h1>
             <Filters

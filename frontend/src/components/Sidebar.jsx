@@ -19,7 +19,7 @@ const Sidebar = () => {
       <button
         className={`${
           isOpen ? "fixed" : "absolute"
-        }  top-7 right-5 z-30 flex flex-col justify-between h-4 w-6 md:hidden`}
+        }  top-8 right-5 z-30 flex flex-col justify-between h-4 w-6 md:hidden`}
         onClick={toggleSidebar}
       >
         <span
@@ -39,11 +39,11 @@ const Sidebar = () => {
         />
       </button>
       <div
-        className={`fixed top-0 right-0 h-full z-20 max-w-80 w-full bg-white border-r border-gray-200 flex flex-col items-start transform transition-transform duration-300 md:static md:max-w-64 lg:max-w-80 md:w-full md:min-h-screen md:translate-x-0 ${
+        className={`fixed pb-8 pr-8 overflow-y-scroll top-0 right-0 h-full z-20 max-w-80 w-full bg-white border-r border-gray-200 flex flex-col items-start transform transition-transform duration-300 md:static md:max-w-64 lg:max-w-80 md:w-full md:min-h-screen md:translate-x-0 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
-        <div className="flex w-full px-5 pt-16 pb-5 md:pt-10">
+        <div className="flex w-full px-5 pt-5 pb-5 md:pt-10">
           <Link
             className="w-full py-3 px-6 bg-color-6 text-center text-white text-base rounded-xl transition-all duration-300 hover:opacity-80"
             to="/"

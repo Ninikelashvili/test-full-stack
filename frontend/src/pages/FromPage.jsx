@@ -83,6 +83,9 @@ const FromPage = () => {
   const formContent = useMemo(
     () => (
       <>
+        <h1 className="text-2xl text-color-4 font-montserrat font-semibold pr-8">
+          Start creating the table
+        </h1>
         <label className="max-w-full w-full flex flex-col items-start gap-2 md:max-w-72">
           <span className="text-sm text-color-4 font-montserrat font-semibold">
             Table Name:
@@ -186,7 +189,7 @@ const FromPage = () => {
   return (
     <form
       onSubmit={handleSubmit}
-      className="w-full flex flex-col items-start py-10 px-5 gap-4 md:gap-12"
+      className="w-full flex flex-col items-start py-6 px-5 gap-4 md:gap-12 md:py-10 "
     >
       {formContent}
     </form>
