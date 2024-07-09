@@ -38,6 +38,7 @@ const FromPage = () => {
       ...prevColumns,
       { name: "", datatype: "", nullable: false },
     ]);
+    setMessage(false);
   }, []);
 
   const handleRemoveColumn = useCallback((index) => {
