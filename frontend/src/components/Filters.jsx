@@ -1,6 +1,18 @@
-import { useCallback } from "react";
+import { useCallback, useEffect } from "react";
+import { useParams } from "react-router-dom";
 
 const Filters = ({ filters, setFilters, setCurrentPage }) => {
+  const { id } = useParams();
+
+  useEffect(() => {
+    setFilters({
+      name: "",
+      dataType: "",
+      nullable: "",
+    });
+    setCurrentPage(1);
+  }, [id, setFilters, setCurrentPage]);
+
   const handleFilterChange = useCallback(
     (e) => {
       const { name, value } = e.target;

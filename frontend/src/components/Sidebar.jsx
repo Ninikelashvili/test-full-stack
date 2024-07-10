@@ -39,7 +39,7 @@ const Sidebar = () => {
         />
       </button>
       <div
-        className={`fixed pb-8 pr-8 overflow-y-scroll top-0 right-0 h-full z-20 max-w-80 w-full bg-white border-r border-gray-200 flex flex-col items-start transform transition-transform duration-300 md:static md:max-w-64 lg:max-w-80 md:w-full md:min-h-screen md:translate-x-0 ${
+        className={`fixed pb-8 pr-8 overflow-y-scroll top-0 right-0 h-full z-20 max-w-80 w-full bg-white border-r border-gray-200 flex flex-col items-start transform transition-transform duration-300 md:pr-0 md:static md:max-w-64 lg:max-w-80 md:w-full md:min-h-screen md:translate-x-0 ${
           isOpen ? "translate-x-0" : "translate-x-full"
         }`}
       >
